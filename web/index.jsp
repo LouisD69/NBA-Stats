@@ -42,7 +42,7 @@
     <!--== Preloader Area End ==-->
 
     <!--== Header Area Start ==-->
-    <header id="header-area" class="fixed-top">
+    <header id="header-area" class=" ">
 
         <!--== Header Bottom Start ==-->
         <div id="header-bottom">
@@ -80,7 +80,7 @@
     <!--== Login Page Content Start ==-->
     <br>
     <br>
-    <section id="lgoin-page-wrap" class="section-padding">
+    <section id="lgoin-page-wrap" class="  ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-8 m-auto">

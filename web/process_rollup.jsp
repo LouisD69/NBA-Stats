@@ -50,7 +50,7 @@
     <!--== Preloader Area End ==-->
 
     <!--== Header Area Start ==-->
-    <header id="header-area" class="fixed-top">
+    <header id="header-area" class=" ">
 
         <!--== Header Bottom Start ==-->
         <div id="header-bottom">
@@ -87,7 +87,7 @@
     <br>
     <br>
     <!--== Login Page Content Start ==-->
-    <section id="lgoin-page-wrap" class="section-padding">
+    <section id="lgoin-page-wrap" class="  ">
         <div id="cur">
             <h1 style= "font-family: Verdana; font-size : 400%; text-align:center ; color: white" >
                 ROLL UP<br>
@@ -96,7 +96,7 @@
         <br>
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-8 m-auto">
+                <div class="col-lg-7 col-md-10 m-auto">
                 	<div class="login-page-content">
                 		<div class="login-form">
                                     <%
@@ -111,7 +111,6 @@
                                             <tr>
                                                 <th>City</th>
                                                 <th>Team Name</th>
-                                                <th>Starting Position</th>
                                                 <th>Player</th>
                                                 <th><%=v_stat%></th>
                                             </tr>
@@ -119,8 +118,7 @@
                                            <tr>                                                            
                                                 <td><%=rs.getString("CITY")%></td>
                                                 <td><%=rs.getString("TEAM_NAME")%></td>
-                                                <td><%=rs.getString("START_POSITION")%></td>
-                                                <td><%=rs.getString("PLAYER_ID")%></td>
+                                                <td><%=rs.getString("PLAYER")%></td>
                                                 <td><%=rs.getString(v_stat)%></td>
                                             </tr>
                                                <%}; q.close();

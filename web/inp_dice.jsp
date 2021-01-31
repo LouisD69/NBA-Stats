@@ -48,7 +48,7 @@ and open the template in the editor.
         <!--== Preloader Area End ==-->
     
         <!--== Header Area Start ==-->
-        <header id="header-area" class="fixed-top">
+        <header id="header-area" class=" ">
     
             <!--== Header Bottom Start ==-->
             <div id="header-bottom">
@@ -87,7 +87,7 @@ and open the template in the editor.
     <br>
     <br>
     <!--== Login Page Content Start ==-->
-    <section id="lgoin-page-wrap" class="section-padding">
+    <section id="lgoin-page-wrap" class="  ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-8 m-auto">

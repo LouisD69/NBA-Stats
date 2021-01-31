@@ -22,17 +22,15 @@ public class Teams {
             Connection conn;
             conn = DriverManager.getConnection(connStr + connSettings + connUser + connPass);
             // 2. Prepare the SQL Statement
-            PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT TEAM_CITY AS tc FROM games_details ORDER BY TEAM_CITY");
+            PreparedStatement stmt = conn.prepareStatement("select distinct city, nickname\n" +
+                                                            "from teams order by city;");
             // 3. Execute the SQL Statement
             ResultSet rs = stmt.executeQuery();
             // 4. Process the results
             while (rs.next()) {
-                teams.add(rs.getString("tc"));
+                teams.add(rs.getString("city") + " " + rs.getString("nickname"));
             }
             
-            teams.set(12, "LA Clippers");
-            teams.set(13, "LA Lakers");
-            teams.remove("New Orleans/Oklahoma City");
             // 5. Disconnect
             stmt.close();
             conn.close();

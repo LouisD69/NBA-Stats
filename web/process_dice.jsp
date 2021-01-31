@@ -50,7 +50,7 @@
     <!--== Preloader Area End ==-->
 
     <!--== Header Area Start ==-->
-    <header id="header-area" class="fixed-top">
+    <header id="header-area" class=" ">
 
         <!--== Header Bottom Start ==-->
         <div id="header-bottom">
@@ -87,7 +87,7 @@
     <br>
     <br>
     <!--== Login Page Content Start ==-->
-    <section id="lgoin-page-wrap" class="section-padding">
+    <section id="lgoin-page-wrap" class="  ">
         <div id="cur">
             <h1 style= "font-family: Verdana; font-size : 400%; text-align:center ; color: white" >
                 TEAMS<br>

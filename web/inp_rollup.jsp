@@ -107,7 +107,7 @@
                                                 stats.add("REB");
                                                 stats.add("AST");
                                             %>
-                                             <small>Select stat:</small> 
+                                             <label>Select Stat:</label> 
                                                 <select name="stat">
                                                     <% int size = stats.size();  
                                                     for(int index=0;index<size;index++) { %>
@@ -121,7 +121,6 @@
                                         <div class="log-btn">
                                                 <button type="submit"><i class="fa fa-check-square"></i> Search</button>
                                         </div>
-                                        <span class="smaller">Note: This query takes a while (~20 seconds)</span>
                                         <br>
                                     </form>
                 		</div>

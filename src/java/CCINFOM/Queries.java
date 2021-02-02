@@ -100,11 +100,11 @@ public class Queries {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(connStr + connSettings + connUser + connPass);
             // 2. Prepare the SQL Statement
-            stmt = conn.prepareStatement("SELECT SEASON, SUM(PTS), SUM(AST), SUM(REB)\n" +
-                                            "FROM gdetails GD, games G\n" +
-                                            "WHERE GD.GAME_ID = G.GAME_ID\n" +
-                                            "GROUP BY SEASON\n" +
-                                            "ORDER BY SEASON"
+            stmt = conn.prepareStatement("SELECT PLAYER_NAME, G.SEASON, SUM(PTS), SUM(AST), SUM(REB)\n" +
+                                        "FROM gdetails GD, games G, players P\n" +
+                                        "WHERE GD.GAME_ID = G.GAME_ID AND GD.PLAYER_ID = P.PLAYER_ID AND G.SEASON = P.SEASON\n" +
+                                        "GROUP BY PLAYER_NAME, SEASON\n" +
+                                        "ORDER BY PLAYER_NAME, SEASON"
                                         );
             // 3. Execute the SQL Statement
             rs = stmt.executeQuery();
@@ -122,11 +122,11 @@ public class Queries {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(connStr + connSettings + connUser + connPass);
             // 2. Prepare the SQL Statement
-            stmt = conn.prepareStatement("SELECT SEASON, MONTH_DATE_EST, SUM(PTS), SUM(AST), SUM(REB)\n" +
-                                            "FROM gdetails GD, games G\n" +
-                                            "WHERE GD.GAME_ID = G.GAME_ID\n" +
-                                            "GROUP BY SEASON, MONTH_DATE_EST\n" +
-                                            "ORDER BY SEASON, MONTH_DATE_EST"
+            stmt = conn.prepareStatement("SELECT PLAYER_NAME, G.SEASON, MONTH_DATE_EST, SUM(PTS), SUM(AST), SUM(REB)\n" +
+                                        "FROM gdetails GD, games G, players P\n" +
+                                        "WHERE GD.GAME_ID = G.GAME_ID AND GD.PLAYER_ID = P.PLAYER_ID AND G.SEASON = P.SEASON\n" +
+                                        "GROUP BY PLAYER_NAME, SEASON, MONTH_DATE_EST\n" +
+                                        "ORDER BY PLAYER_NAME, SEASON, MONTH_DATE_EST"
                                         );
             // 3. Execute the SQL Statement
             rs = stmt.executeQuery();
@@ -145,11 +145,11 @@ public class Queries {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(connStr + connSettings + connUser + connPass);
             // 2. Prepare the SQL Statement
-            stmt = conn.prepareStatement("SELECT SEASON, MONTH_DATE_EST, GAME_DATE_EST, SUM(PTS), SUM(AST), SUM(REB)\n" +
-                                            "FROM gdetails GD, games G\n" +
-                                            "WHERE GD.GAME_ID = G.GAME_ID\n" +
-                                            "GROUP BY SEASON, MONTH_DATE_EST, GAME_DATE_EST\n" +
-                                            "ORDER BY SEASON, MONTH_DATE_EST, GAME_DATE_EST"
+            stmt = conn.prepareStatement("SELECT PLAYER_NAME, G.SEASON, MONTH_DATE_EST, GAME_DATE_EST, SUM(PTS), SUM(AST), SUM(REB)\n" +
+                                            "FROM gdetails GD, games G, players P\n" +
+                                            "WHERE GD.GAME_ID = G.GAME_ID AND GD.PLAYER_ID = P.PLAYER_ID AND G.SEASON = P.SEASON\n" +
+                                            "GROUP BY PLAYER_NAME, SEASON, MONTH_DATE_EST, GAME_DATE_EST\n" +
+                                            "ORDER BY PLAYER_NAME, SEASON, MONTH_DATE_EST, GAME_DATE_EST"
                                         );
             // 3. Execute the SQL Statement
             rs = stmt.executeQuery();
@@ -160,4 +160,30 @@ public class Queries {
         return rs;
     } 
     
+    
+    public ResultSet dice(String stat, String team, String player) {
+        ResultSet rs = null;
+        try {
+            // 1. Connect to the database
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection(connStr + connSettings + connUser + connPass);
+            // 2. Prepare the SQL Statement
+            stmt = conn.prepareStatement("SELECT CONCAT(t.city, ' ', t.nickname) team_name, p.player_name AS PLAYER, g.season AS SEASON, SUM("+ stat + ") " + stat +
+                                            " FROM gdetails gd, games g, players p, teams t\n" +
+                                            "WHERE gd.team_id = t.team_id AND gd.player_id = p.player_id AND gd.game_id = g.game_id AND g.season = p.season " +
+                                            "AND player_name LIKE '" + player + "'\n" +
+                                            "GROUP BY team_name, p.player_id, g.season\n" +
+                                            "HAVING team_name LIKE '" + team + "'\n" +
+                                            "ORDER BY " + stat + " DESC;"
+                                        );
+            // 3. Execute the SQL Statement
+            rs = stmt.executeQuery();
+            
+        } catch (Exception e) {
+                System.out.println("something went wrong" + e.getMessage());
+            }  
+        return rs;
+    } 
+    
+  
 }

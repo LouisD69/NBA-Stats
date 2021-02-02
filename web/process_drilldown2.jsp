@@ -96,7 +96,7 @@
         <br>
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-8 m-auto">
+                <div class="col-lg-8 col-md-10 m-auto">
                 	<div class="login-page-content">
                 		<div class="login-form">
                                     <%
@@ -110,16 +110,21 @@
                                             <button id="revert" type="submit"><i class="fa fa-check-square"></i>Revert</button>
                                         </div>
                                         <table class="table">
+                                            <thead>
                                             <tr>
+                                                <th>Player</th>
                                                 <th>Season</th>
                                                 <th>Month</th>
                                                 <th>PTS</th>
                                                 <th>AST</th>
                                                 <th>REB</th>
                                             </tr>
+                                            </thead>
+                                            <tbody>
                                             <%    while(rs.next()) {  %>
                                            <tr>                                                            
-                                                <td><%=rs.getString("SEASON")%></td>
+                                                <td><%=rs.getString("PLAYER_NAME")%></td>
+                                                <td><%=rs.getString("SEASON")%></td>      
                                                 <td><%=rs.getString("MONTH_DATE_EST")%></td>
                                                 <td><%=rs.getString("SUM(PTS)")%></td>
                                                 <td><%=rs.getString("SUM(AST)")%></td>
@@ -127,6 +132,7 @@
                                             </tr>
                                                <%}; q.close();
                                             %>
+                                        </tbody>
                                         </table>
                                          <br>
                                         <div class="log-btn">
@@ -138,7 +144,7 @@
                 </div>
         	</div>
         </div>
-    </section
+    </section>
     <!--== Login Page Content End ==-->
 
     <!--== Scroll Top Area Start ==-->
@@ -177,6 +183,9 @@
 
     <!--=== Main Js ===-->
     <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/DataTables/datatables.css"/>
+    <script type="text/javascript" src="assets/DataTables/datatables.js"></script>
+    <script type="text/javascript" src="assets/DataTables/table.js"></script> 
     <script>
         $('#revert').click(function(){
             $('#queryform').attr('action', 'process_drilldown.jsp');

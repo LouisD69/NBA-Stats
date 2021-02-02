@@ -96,7 +96,7 @@
         <br>
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-8 m-auto">
+                <div class="col-lg-8 col-md-10 m-auto">
                 	<div class="login-page-content">
                 		<div class="login-form">
                                     <%
@@ -109,12 +109,15 @@
                                         rs = q.slice(v_stat, v_year);
                                      %>
                                     <form action="index.jsp">
-                                            <table class="table">
+                                            <table>
+                                                <thead>
                                                 <tr>
                                                     <th>Season</th>
                                                     <th>Player</th>
                                                     <th><%=v_stat%></th>
                                                 </tr>
+                                                </thead>
+                                                <tbody>
                                                 <%    while(rs.next()) {  %>
                                                <tr>                                                            
                                                     <td><%=rs.getString("Season")%></td>
@@ -123,10 +126,11 @@
                                                 </tr>
                                                    <%}; q.close();
                                                 %>
+                                            </tbody>
                                             </table>
                                             <br>
                                             <div class="log-btn">
-                                                    <button type="submit"><i class="fa fa-check-square"></i> Proceed</button>
+                                                    <button type="submit"><i class="fa fa-check-square"></i>Return</button>
                                             </div>
                                     </form>                                             
                 		</div>
@@ -134,7 +138,7 @@
                 </div>
         	</div>
         </div>
-    </section
+    </section>
     <!--== Login Page Content End ==-->
 
     <!--== Scroll Top Area Start ==-->
@@ -173,6 +177,9 @@
 
     <!--=== Main Js ===-->
     <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/DataTables/datatables.css"/>
+    <script type="text/javascript" src="assets/DataTables/datatables.js"></script>
+    <script type="text/javascript" src="assets/DataTables/table.js"></script>
                                  
 </body>
 

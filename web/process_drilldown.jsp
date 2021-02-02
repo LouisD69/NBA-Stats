@@ -29,7 +29,10 @@
     <link href="style.css" rel="stylesheet">
     <!--=== Responsive CSS ===-->
     <link href="assets/css/responsive.css" rel="stylesheet">
-
+    
+    
+ 
+    
 
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -96,7 +99,7 @@
         <br>
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-8 m-auto">
+                <div class="col-lg-7 col-md-10 m-auto">
                 	<div class="login-page-content">
                 		<div class="login-form">
                                     <%
@@ -106,22 +109,28 @@
                                         rs = q.drilldown1();
                                      %>
                                     <form action="process_drilldown2.jsp">
-                                        <table class="table">
-                                            <tr>
-                                                <th>Season</th>
-                                                <th>PTS</th>
-                                                <th>AST</th>
-                                                <th>REB</th>
-                                            </tr>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Player</th>
+                                                    <th>Season</th>
+                                                    <th>PTS</th>
+                                                    <th>AST</th>
+                                                    <th>REB</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                             <%    while(rs.next()) {  %>
                                            <tr>                                                            
-                                                <td><%=rs.getString("SEASON")%></td>
+                                                <td><%=rs.getString("PLAYER_NAME")%></td>
+                                                <td><%=rs.getString("SEASON")%></td>      
                                                 <td><%=rs.getString("SUM(PTS)")%></td>
                                                 <td><%=rs.getString("SUM(AST)")%></td>
                                                 <td><%=rs.getString("SUM(REB)")%></td>
                                             </tr>
                                                <%}; q.close();
                                             %>
+                                            </tbody>
                                         </table>
                                          <br>
                                         <div class="log-btn">
@@ -133,7 +142,7 @@
                 </div>
         	</div>
         </div>
-    </section
+    </section>
     <!--== Login Page Content End ==-->
 
     <!--== Scroll Top Area Start ==-->
@@ -172,6 +181,10 @@
 
     <!--=== Main Js ===-->
     <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/DataTables/datatables.css"/>
+    <script type="text/javascript" src="assets/DataTables/datatables.js"></script>
+    <script type="text/javascript" src="assets/DataTables/table.js"></script> 
+    
                                  
 </body>
 

@@ -94,6 +94,7 @@ and open the template in the editor.
                 	<div class="login-page-content">
                 		<div class="login-form">
                                 <h1>DICE</h1>
+                                <br>
                                     <div class="log-btn">
                                         <!--==Put member links here==-->
                                         <form action="process_dice.jsp">
@@ -102,7 +103,7 @@ and open the template in the editor.
                                                     Teams t= new Teams();
                                                     t.getTeams();
                                                 %>
-                                                <small>Select Team:</small> <select name="teams">
+                                                <label>Select Team:</label> <select name="team">
                                                     <%  int size = t.teams.size();
                                                         for(int index=0;index<size;index++) { %>
                                                         <option value ="<%=t.teams.get(index)%>"> <%=t.teams.get(index)%> </option>
@@ -118,7 +119,7 @@ and open the template in the editor.
                                                     stats.add("REB");
                                                     stats.add("AST");
                                                 %>
-                                                <small>Select Stat:</small> <select name="stats">
+                                                <label>Select Stat:</label> <select name="stat">
                                                     <% size = stats.size();  
                                                     for(int index=0;index<size;index++) { %>
                                                         <option value ="<%=stats.get(index)%>"> <%=stats.get(index)%> </option>
@@ -127,7 +128,11 @@ and open the template in the editor.
                                                 </select>
                                             </div>
                                             <br>
-
+                                            <div class="username">
+                                                <label for="bn"><label>Player Name</label></label>
+                                                <input type='text' placeholder='Enter Player Name' name="player" id="pn"/>
+                                            </div>
+                                            <br>
                                             <div class="log-btn">
                                                     <button type="submit"><i class="fa fa-check-square"></i> Search</button>
                                             </div>
@@ -178,6 +183,6 @@ and open the template in the editor.
 
     <!--=== Mian Js ===-->
     <script src="assets/js/main.js"></script>
-
+    
 </body>
 </html> 

@@ -100,28 +100,30 @@
                                                        stats.add("REB");
                                                        stats.add("AST");
                                                    %>
-                                                    <small>Select Season:</small> <select name="year">
+                                                    <label>Select Season:</label> <select name="year">
                                                         <%  int size = s.seasons.size();
                                                             for(int index=0;index<size;index++) { %>
                                                             <option value ="<%=s.seasons.get(index)%>"> <%=s.seasons.get(index)%> </option>
                                                         <% }
                                                         %>
                                                     </select>
-                                                   <br>
-                                                   <small>Select stat:</small> 
+                                            </div>
+                                            <br>
+                                            <div class="username">
+                                                   <label>Select Stat:</label> 
                                                    <select name="stat">
                                                        <% size = stats.size();  
                                                        for(int index=0;index<size;index++) { %>
                                                            <option value ="<%=stats.get(index)%>"> <%=stats.get(index)%> </option>
                                                        <% }
                                                        %>
-                                                   </select>                              
+                                                   </select>   
+                                            </div>
                                                 <br>
                                                 <div class="log-btn">
                                                         <button id="formsubmit" type="submit"><i class="fa fa-check-square"></i>Submit</button>
                                                 </div>
                                                 <br>
-                                            </div>
                                         </form>
                                     </div>
                 		</div>

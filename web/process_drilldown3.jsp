@@ -66,7 +66,7 @@
 
                     <!--== Main Menu Start ==-->
                     
-                    <div class="col-lg-8 d-none d-xl-block">
+                    <div class="col-lg-9 col-md-11 d-none d-xl-block">
                         <nav class="mainmenu alignright">
                             <ul>
                                 <li><a href="index.jsp">Slice</a> </li>
@@ -96,7 +96,7 @@
         <br>
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-8 m-auto">
+                <div class="col-lg-6 col-md-10 m-auto">
                 	<div class="login-page-content">
                 		<div class="login-form">
                                     <%
@@ -109,8 +109,10 @@
                                         <div class="log-btn">
                                             <button type="submit"><i class="fa fa-check-square"></i>Revert</button>
                                         </div>
-                                        <table class="table">
+                                        <table>
+                                            <thead>
                                             <tr>
+                                                <th>Player</th>
                                                 <th>Season</th>
                                                 <th>Month</th>
                                                 <th>Day</th>
@@ -118,9 +120,12 @@
                                                 <th>AST</th>
                                                 <th>REB</th>
                                             </tr>
+                                            </thead>
+                                            <tbody>
                                             <%    while(rs.next()) {  %>
-                                           <tr>                                                            
-                                                <td><%=rs.getString("SEASON")%></td>
+                                           <tr>
+                                                <td><%=rs.getString("PLAYER_NAME")%></td>
+                                                <td><%=rs.getString("SEASON")%></td>                      
                                                 <td><%=rs.getString("MONTH_DATE_EST")%></td>
                                                 <td><%=rs.getString("GAME_DATE_EST")%></td>
                                                 <td><%=rs.getString("SUM(PTS)")%></td>
@@ -129,6 +134,7 @@
                                             </tr>
                                                <%}; q.close();
                                             %>
+                                            </tbody>
                                         </table>
                                          <br>
                                         <div class="log-btn">
@@ -140,7 +146,7 @@
                 </div>
         	</div>
         </div>
-    </section
+    </section>
     <!--== Login Page Content End ==-->
 
     <!--== Scroll Top Area Start ==-->
@@ -179,6 +185,9 @@
 
     <!--=== Main Js ===-->
     <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/DataTables/datatables.css"/>
+    <script type="text/javascript" src="assets/DataTables/datatables.js"></script>
+    <script type="text/javascript" src="assets/DataTables/table.js"></script> 
                                  
 </body>
 

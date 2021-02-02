@@ -29,7 +29,7 @@
     <link href="style.css" rel="stylesheet">
     <!--=== Responsive CSS ===-->
     <link href="assets/css/responsive.css" rel="stylesheet">
-
+    
 
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -90,63 +90,58 @@
     <section id="lgoin-page-wrap" class="  ">
         <div id="cur">
             <h1 style= "font-family: Verdana; font-size : 400%; text-align:center ; color: white" >
-                TEAMS<br>
-                MOST WINS
+                DICE<br>
             </h1>
         </div>
         <br>
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-8 m-auto">
+                <div class="col-lg-8 col-md-10 m-auto">
                 	<div class="login-page-content">
                 		<div class="login-form">
                                     <%
                                         // 1. Connect to the database
                                         Queries q = new Queries();
                                         ResultSet rs = null;
-                                        String v_operation = request.getParameter("operation");
                                         String v_stat = request.getParameter("stat");
-
-                                        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-                                        Connection conn;
-                                        conn = DriverManager.getConnection("jdbc:mysql://phtfaw4p6a970uc0.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/l3c6nom2ws5gn61d?useSSL=false&allowPublicKeyRetrieval=true&useTimezone=true&serverTimezone=UTC&user=ttgfmlfy3hablbf1&password=egiw82qb6mhb9s1f");
-
-                                        if(v_operation.equals("Slice"))
-                                           rs = q.slice(v_stat);
-                                        else if(v_operation.equals("Rollup")) 
-                                           rs = q.slice(v_stat);
-                                        else if(v_operation.equals("Dice")) 
-                                           rs = q.slice(v_stat);
-                                        else
-                                           rs = q.slice(v_stat);
-                                        rs.next();
+                                        String v_team = request.getParameter("team");
+                                        String v_player = request.getParameter("player");
+                                        rs = q.dice(v_stat, v_team, v_player);
                                      %>
-                                    <form action="index.jsp">
-                                            <div class="username">
-                                                <strong>Season</strong>
-                                                <p><%=v_season%> - <%=v_season2%><p>
-                                            </div>
-                                            <br>
-                                            <div class="username">
-                                                <strong>Team Name</strong>
-                                                <p><%=rs.getString("team")%><p>
-                                            </div>
-                                            <br>
-                                            <div class="username">
-                                                <strong>Wins</strong>
-                                                <p><%=rs.getString("wins")%><p>
-                                            </div>
-                                            <br>
-                                            <div class="log-btn">
-                                                    <button type="submit"><i class="fa fa-check-square"></i> Proceed</button>
-                                            </div>
+                                    <form id="queryform" action="inp_dice.jsp">
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th>Team</th>
+                                                <th>Player</th>
+                                                <th>Season</th>                                                   
+                                                <th><%=v_stat%></th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <%    while(rs.next()) {  %>                                           
+                                             <tr>                                                            
+                                                <td><%=rs.getString("team_name")%></td>
+                                                <td><%=rs.getString("PLAYER")%></td>      
+                                                <td><%=rs.getString("SEASON")%></td>
+                                                <td><%=rs.getString(v_stat)%></td>
+                                            </tr>
+                                               <%}; q.close();
+                                            %>
+                                            </tbody>
+                                        </table>
+                                         <br>
+                                        <div class="log-btn">
+                                            <button type="submit"><i class="fa fa-check-square"></i>Return</button>
+                                        </div>
                                     </form>                                             
                 		</div>
                 	</div>
                 </div>
         	</div>
         </div>
-    </section
+    </section>
     <!--== Login Page Content End ==-->
 
     <!--== Scroll Top Area Start ==-->
@@ -185,6 +180,9 @@
 
     <!--=== Main Js ===-->
     <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/DataTables/datatables.css"/>
+    <script type="text/javascript" src="assets/DataTables/datatables.js"></script>
+    <script type="text/javascript" src="assets/DataTables/table.js"></script>
                                  
 </body>
 

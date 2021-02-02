@@ -74,7 +74,7 @@
                             <ul>
                                 <li><a href="index.jsp">Slice</a> </li>
                                 <li><a href="inp_rollup.jsp">Roll Up</a></li>
-                                <li><a href="process_drilldown.jsp">Drill Down</a></li>
+                                <li><a href="inp_drilldown.jsp">Drill Down</a></li>
                                 <li><a href="inp_dice.jsp">Dice</a></li>
                             </ul>
                         </nav>
@@ -105,10 +105,12 @@
                                     <%
                                         // 1. Connect to the database
                                         Queries q = new Queries();
-                                        ResultSet rs = null;        
-                                        rs = q.drilldown1();
-                                     %>
+                                        ResultSet rs = null;
+                                        String v_player = request.getParameter("player");
+                                        rs = q.drilldown1(v_player);
+                                     %> 
                                     <form action="process_drilldown2.jsp">
+                                        <input type='text' placeholder='Enter Player Name' name="player" style="display:none" value="<%=v_player%>" id="pn"/>
                                         <table>
                                             <thead>
                                                 <tr>

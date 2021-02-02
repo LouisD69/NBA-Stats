@@ -71,7 +71,7 @@
                         <ul>
                             <li><a href="index.jsp">Slice</a> </li>
                             <li><a href="inp_rollup.jsp">Roll Up</a></li>
-                            <li><a href="process_drilldown.jsp">Drill Down</a></li>
+                            <li><a href="inp_drilldown.jsp">Drill Down</a></li>
                             <li><a href="inp_dice.jsp">Dice</a></li>
                         </ul>
                     </nav>

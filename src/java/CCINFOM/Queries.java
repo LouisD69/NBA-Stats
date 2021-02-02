@@ -93,16 +93,17 @@ public class Queries {
         return rs;
     }   
     
-    public ResultSet drilldown1() {
+    public ResultSet drilldown1(String player) {
         ResultSet rs = null;
         try {
             // 1. Connect to the database
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(connStr + connSettings + connUser + connPass);
             // 2. Prepare the SQL Statement
-            stmt = conn.prepareStatement("SELECT PLAYER_NAME, G.SEASON, SUM(PTS), SUM(AST), SUM(REB)\n" +
+            stmt = conn.prepareStatement("SELECT P.PLAYER_NAME, G.SEASON, SUM(PTS), SUM(AST), SUM(REB)\n" +
                                         "FROM gdetails GD, games G, players P\n" +
                                         "WHERE GD.GAME_ID = G.GAME_ID AND GD.PLAYER_ID = P.PLAYER_ID AND G.SEASON = P.SEASON\n" +
+                                        "AND P.player_name LIKE '" + player + "'\n" +
                                         "GROUP BY PLAYER_NAME, SEASON\n" +
                                         "ORDER BY PLAYER_NAME, SEASON"
                                         );
@@ -115,16 +116,17 @@ public class Queries {
         return rs;
     }
     
-    public ResultSet drilldown2() {
+    public ResultSet drilldown2(String player) {
         ResultSet rs = null;
         try {
             // 1. Connect to the database
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(connStr + connSettings + connUser + connPass);
             // 2. Prepare the SQL Statement
-            stmt = conn.prepareStatement("SELECT PLAYER_NAME, G.SEASON, MONTH_DATE_EST, SUM(PTS), SUM(AST), SUM(REB)\n" +
+            stmt = conn.prepareStatement("SELECT P.PLAYER_NAME, G.SEASON, MONTH_DATE_EST, SUM(PTS), SUM(AST), SUM(REB)\n" +
                                         "FROM gdetails GD, games G, players P\n" +
                                         "WHERE GD.GAME_ID = G.GAME_ID AND GD.PLAYER_ID = P.PLAYER_ID AND G.SEASON = P.SEASON\n" +
+                                        "AND P.player_name LIKE '" + player + "'\n" +
                                         "GROUP BY PLAYER_NAME, SEASON, MONTH_DATE_EST\n" +
                                         "ORDER BY PLAYER_NAME, SEASON, MONTH_DATE_EST"
                                         );
@@ -138,7 +140,7 @@ public class Queries {
         return rs;
     } 
     
-    public ResultSet drilldown3() {
+    public ResultSet drilldown3(String player) {
         ResultSet rs = null;
         try {
             // 1. Connect to the database
@@ -148,6 +150,7 @@ public class Queries {
             stmt = conn.prepareStatement("SELECT PLAYER_NAME, G.SEASON, MONTH_DATE_EST, GAME_DATE_EST, SUM(PTS), SUM(AST), SUM(REB)\n" +
                                             "FROM gdetails GD, games G, players P\n" +
                                             "WHERE GD.GAME_ID = G.GAME_ID AND GD.PLAYER_ID = P.PLAYER_ID AND G.SEASON = P.SEASON\n" +
+                                            "AND player_name LIKE '" + player + "'\n" +
                                             "GROUP BY PLAYER_NAME, SEASON, MONTH_DATE_EST, GAME_DATE_EST\n" +
                                             "ORDER BY PLAYER_NAME, SEASON, MONTH_DATE_EST, GAME_DATE_EST"
                                         );

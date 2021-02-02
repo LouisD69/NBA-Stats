@@ -1,8 +1,14 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="CCINFOM.Teams"%>
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
-<%@page import = "CCINFOM.*, java.util.*"%>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
     <head>
-        <title>NBA - Slice</title>
+        <title>NBA - Drilldown</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,31 +35,33 @@
         <!--=== Responsive CSS ===-->
         <link href="assets/css/responsive.css" rel="stylesheet">
     </head>
-<body class="loader-active" style="background-image: url(assets/img/blackred.jpg); background-size: 100% ;">
+    <body class="loader-active" style="background-image: url(assets/img/blackredcar.jpg); background-size: 100% ;">
 
-    <!--== Preloader Area Start ==-->
-    <div class="preloader">
-        <div class="preloader-spinner">
-            <div class="loader-content">
-                <img src="assets/img/preloader.gif" alt="JSOFT">
+        <!--== Preloader Area Start ==-->
+        <div class="preloader">
+            <div class="preloader-spinner">
+                <div class="loader-content">
+                    <img src="assets/img/preloader.gif" alt="JSOFT">
+                </div>
             </div>
         </div>
-    </div>
-    <!--== Preloader Area End ==-->
-
-    <!--== Header Area Start ==-->
-    <header id="header-area" class=" ">
-
-        <!--== Header Bottom Start ==-->
-        <div id="header-bottom">
-            <div class="container">
-                <div class="row">
-                    <!--== Logo Start ==-->
-                    <div class="col-lg-4">
-                        <a href="index.jsp" class="logo">
-                            <img src = "assets/img/zero_logo.png">            
-                        </a>
-                    </div>
+        <!--== Preloader Area End ==-->
+    
+        <!--== Header Area Start ==-->
+        <header id="header-area" class=" ">
+    
+            <!--== Header Bottom Start ==-->
+            <div id="header-bottom">
+                <div class="container">
+                    <div class="row">
+                        <!--== Logo Start ==-->
+                        <div class="col-lg-4">
+                            <a href="index.jsp" class="logo">
+                                <img src = "assets/img/zero_logo.png">            
+                            </a>
+                        </div>
+                        <!--== Logo End ==-->
+    
                     <!--== Logo End ==-->
 
                     <!--== Main Menu Start ==-->
@@ -76,54 +84,29 @@
         <!--== Header Bottom End ==-->
     </header>
     <!--== Header Area End ==-->
-
+    <br>
+    <br>
     <!--== Login Page Content Start ==-->
-    <br>
-    <br>
     <section id="lgoin-page-wrap" class="  ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-8 m-auto">
                 	<div class="login-page-content">
                 		<div class="login-form">
-                                <h1>Slice</h1>            
+                                <h1>DRILLDOWN</h1>
+                                <br>
                                     <div class="log-btn">
-                                        <form id="queryform" action="process_slice.jsp">
+                                        <!--==Put member links here==-->
+                                        <form action="process_drilldown.jsp">                      
                                             <div class="username">
-                                                    <% 
-                                                        
-                                                       Seasons s= new Seasons();
-                                                       s.getSeasons();
-                                                       
-                                                       ArrayList <String> stats = new ArrayList<String>();
-                                                       stats.add("PTS");
-                                                       stats.add("REB");
-                                                       stats.add("AST");
-                                                   %>
-                                                    <label>Select Season:</label> <select name="year">
-                                                        <%  int size = s.seasons.size();
-                                                            for(int index=0;index<size;index++) { %>
-                                                            <option value ="<%=s.seasons.get(index)%>"> <%=s.seasons.get(index)%> </option>
-                                                        <% }
-                                                        %>
-                                                    </select>
+                                                <label for="bn"><label>Player Name</label></label>
+                                                <input type='text' placeholder='Enter Player Name' name="player" id="pn"/>
                                             </div>
                                             <br>
-                                            <div class="username">
-                                                   <label>Select Stat:</label> 
-                                                   <select name="stat">
-                                                       <% size = stats.size();  
-                                                       for(int index=0;index<size;index++) { %>
-                                                           <option value ="<%=stats.get(index)%>"> <%=stats.get(index)%> </option>
-                                                       <% }
-                                                       %>
-                                                   </select>   
+                                            <div class="log-btn">
+                                                    <button type="submit"><i class="fa fa-check-square"></i>Submit</button>
                                             </div>
-                                                <br>
-                                                <div class="log-btn">
-                                                        <button id="formsubmit" type="submit"><i class="fa fa-check-square"></i>Submit</button>
-                                                </div>
-                                                <br>
+                                            <br>
                                         </form>
                                     </div>
                 		</div>
@@ -170,6 +153,6 @@
 
     <!--=== Mian Js ===-->
     <script src="assets/js/main.js"></script>
-
+    
 </body>
 </html> 

@@ -71,7 +71,7 @@
                             <ul>
                                 <li><a href="index.jsp">Slice</a> </li>
                                 <li><a href="inp_rollup.jsp">Roll Up</a></li>
-                                <li><a href="process_drilldown.jsp">Drill Down</a></li>
+                                <li><a href="inp_drilldown.jsp">Drill Down</a></li>
                                 <li><a href="inp_dice.jsp">Dice</a></li>
                             </ul>
                         </nav>
@@ -96,18 +96,20 @@
         <br>
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-10 m-auto">
+                <div class="col-lg-9 col-md-10 m-auto">
                 	<div class="login-page-content">
                 		<div class="login-form">
                                     <%
                                         // 1. Connect to the database
                                         Queries q = new Queries();
-                                        ResultSet rs = null;        
-                                        rs = q.drilldown3();
+                                        ResultSet rs = null;
+                                        String v_player = request.getParameter("player");
+                                        rs = q.drilldown3(v_player);
                                      %>
-                                    <form id="queryform" action="process_drilldown2.jsp">
+                                    <form id="queryform" action="inp_drilldown.jsp">
+                                    <input type='text' placeholder='Enter Player Name' name="player" style="display:none" value="<%=v_player%>" id="pn"/>
                                         <div class="log-btn">
-                                            <button type="submit"><i class="fa fa-check-square"></i>Revert</button>
+                                            <button id="revert" type="submit"><i class="fa fa-check-square"></i>Revert</button>
                                         </div>
                                         <table>
                                             <thead>
@@ -138,7 +140,7 @@
                                         </table>
                                          <br>
                                         <div class="log-btn">
-                                            <button type="submit"><i class="fa fa-check-square"></i>Revert</button>
+                                            <button type="submit"><i class="fa fa-check-square"></i>Return</button>
                                         </div>
                                     </form>                                             
                 		</div>
@@ -188,7 +190,12 @@
     <link rel="stylesheet" type="text/css" href="assets/DataTables/datatables.css"/>
     <script type="text/javascript" src="assets/DataTables/datatables.js"></script>
     <script type="text/javascript" src="assets/DataTables/table.js"></script> 
-                                 
+    
+    <script>
+        $('#revert').click(function(){
+            $('#queryform').attr('action', 'process_drilldown2.jsp');
+         });
+    </script>
 </body>
 
 </html>

@@ -104,27 +104,32 @@
                                         Queries q = new Queries();
                                         ResultSet rs = null;
                                         String v_stat = request.getParameter("stat");
-                                        String v_team = request.getParameter("team");
-                                        String v_player = request.getParameter("player");
-                                        rs = q.dice(v_stat, v_team, v_player);
+                                        String v_player1 = request.getParameter("player1");
+                                        String v_player2 = request.getParameter("player2");
+                                        String v_player3 = request.getParameter("player3");
+                                        String v_season1 = request.getParameter("year1");
+                                        String v_season2 = request.getParameter("year2");
+                                        String v_season3 = request.getParameter("year3");
+                                          
+                                        rs = q.dice(v_stat, v_player1, v_player2, v_player3, v_season1, v_season2, v_season3);
                                      %>
                                     <form id="queryform" action="inp_dice.jsp">
                                         <table>
                                             <thead>
                                             <tr>
+                                                <th>Season</th> 
                                                 <th>Team</th>
-                                                <th>Player</th>
-                                                <th>Season</th>                                                   
+                                                <th>Player</th>                                    
                                                 <th><%=v_stat%></th>
 
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <%    while(rs.next()) {  %>                                           
-                                             <tr>                                                            
-                                                <td><%=rs.getString("team_name")%></td>
-                                                <td><%=rs.getString("PLAYER")%></td>      
+                                             <tr>     
                                                 <td><%=rs.getString("SEASON")%></td>
+                                                <td><%=rs.getString("team_name")%></td>
+                                                <td><%=rs.getString("PLAYER")%></td>          
                                                 <td><%=rs.getString(v_stat)%></td>
                                             </tr>
                                                <%}; q.close();

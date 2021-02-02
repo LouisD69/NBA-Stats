@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="CCINFOM.Teams"%>
+<%@page import="CCINFOM.Seasons"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -99,21 +100,39 @@ and open the template in the editor.
                                         <!--==Put member links here==-->
                                         <form action="process_dice.jsp">
                                             <div class="username">
-                                             <% 
-                                                    Teams t= new Teams();
-                                                    t.getTeams();
+                                             <%     
+                                                    Seasons s= new Seasons();
+                                                    s.getSeasons();
                                                 %>
-                                                <label>Select Team:</label> <select name="team">
-                                                    <%  int size = t.teams.size();
-                                                        for(int index=0;index<size;index++) { %>
-                                                        <option value ="<%=t.teams.get(index)%>"> <%=t.teams.get(index)%> </option>
-                                                    <% }
-                                                    %>
+                                               <label>Select Season 1:</label> <select name="year1">
+                                                        <%  int size = s.seasons.size();
+                                                            for(int index=0;index<size;index++) { %>
+                                                            <option value ="<%=s.seasons.get(index)%>"> <%=s.seasons.get(index)%> </option>
+                                                        <% }
+                                                        %>
+                                                </select>
+                                            </div>
+                                            <div class="username">
+                                                <label>Select Season 2:</label> <select name="year2">
+                                                        <%  
+                                                            for(int index=0;index<size;index++) { %>
+                                                            <option value ="<%=s.seasons.get(index)%>"> <%=s.seasons.get(index)%> </option>
+                                                        <% }
+                                                        %>
+                                                </select>
+                                            </div>
+                                            <div class="username">
+                                                <label>Select Season 3:</label> <select name="year3">
+                                                        <% 
+                                                            for(int index=0;index<size;index++) { %>
+                                                            <option value ="<%=s.seasons.get(index)%>"> <%=s.seasons.get(index)%> </option>
+                                                        <% }
+                                                        %>
                                                 </select>
                                             </div>
                                             <br>
                                             <div class="username">
-                                             <% 
+                                                <% 
                                                     ArrayList <String> stats = new ArrayList<String>();
                                                     stats.add("PTS");
                                                     stats.add("REB");
@@ -130,11 +149,20 @@ and open the template in the editor.
                                             <br>
                                             <div class="username">
                                                 <label for="bn"><label>Player Name</label></label>
-                                                <input type='text' placeholder='Enter Player Name' name="player" id="pn"/>
+                                                <input type='text' placeholder='Enter Player 1 Name' name="player1" id="pn"/>
                                             </div>
                                             <br>
+                                            <div class="username">
+                                                <label for="bn"><label>Player Name</label></label>
+                                                <input type='text' placeholder='Enter Player 2 Name' name="player2" id="pn"/>
+                                            </div>
+                                            <br>
+                                            <div class="username">
+                                                <label for="bn"><label>Player Name</label></label>
+                                                <input type='text' placeholder='Enter Player 3 Name' name="player3" id="pn"/>
+                                            </div>
                                             <div class="log-btn">
-                                                    <button type="submit"><i class="fa fa-check-square"></i> Search</button>
+                                                    <button type="submit"><i class="fa fa-check-square"></i>Submit</button>
                                             </div>
                                             <br>
                                     </form>

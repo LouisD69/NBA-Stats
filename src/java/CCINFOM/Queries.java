@@ -164,21 +164,26 @@ public class Queries {
     } 
     
     
-    public ResultSet dice(String stat, String team, String player) {
+    public ResultSet dice(String stat, String player1, String player2, String player3, String season1, String season2, String season3) {
         ResultSet rs = null;
         try {
             // 1. Connect to the database
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(connStr + connSettings + connUser + connPass);
             // 2. Prepare the SQL Statement
-            stmt = conn.prepareStatement("SELECT CONCAT(t.city, ' ', t.nickname) team_name, p.player_name AS PLAYER, g.season AS SEASON, SUM("+ stat + ") " + stat +
+            
+            stmt = conn.prepareStatement("SELECT g.season AS SEASON, CONCAT(t.city, ' ', t.nickname) team_name, p.player_name AS PLAYER, \n" +
+                                            "SUM("+ stat + ") " + stat +
                                             " FROM gdetails gd, games g, players p, teams t\n" +
-                                            "WHERE gd.team_id = t.team_id AND gd.player_id = p.player_id AND gd.game_id = g.game_id AND g.season = p.season " +
-                                            "AND player_name LIKE '" + player + "'\n" +
+                                            "WHERE gd.team_id = t.team_id AND gd.player_id = p.player_id AND gd.game_id = g.game_id \n" +
+                                            "AND g.season = p.season \n" +
+                                            "AND (player_name LIKE '" + player1 + "' OR player_name LIKE '" + player2 + "' OR player_name LIKE '" + player3 + "')\n" +
+                                            "AND (g.season = " + season1 + " OR g.season = " + season2 + " OR g.season = " + season3 + ")\n" +
                                             "GROUP BY team_name, p.player_id, g.season\n" +
-                                            "HAVING team_name LIKE '" + team + "'\n" +
-                                            "ORDER BY " + stat + " DESC;"
-                                        );
+                                            "ORDER BY season," + stat + ";"
+                                          );
+                    
+                    
             // 3. Execute the SQL Statement
             rs = stmt.executeQuery();
             
